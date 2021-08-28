@@ -26,4 +26,10 @@ public class StringCalculatorTest {
     public void testTwoValues() {
         assertEquals(calculator.add("1,2"), 3);
     }
+    
+    @org.junit.Test
+    public void testUnknownAmountOfValues() {
+        assertEquals(calculator.add("1,2,3,4,5"), 15);
+    }
+    
 }

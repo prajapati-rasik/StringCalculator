@@ -13,8 +13,16 @@ public class StringCalculator {
         }else if(numberString.length() == 1){
             return convertStringToInt(numberString);
         }else{
-            return convertStringToInt(numbers[0]) + convertStringToInt(numbers[1]);
+            return getsum(numbers);
         }
+    }
+    
+    private int getsum(String[] numbers){
+        int sum = 0;
+        for(String number : numbers){
+            sum += convertStringToInt(number);
+        }
+        return sum;
     }
     
     private int convertStringToInt(String number){
