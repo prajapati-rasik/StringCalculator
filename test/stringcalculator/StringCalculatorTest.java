@@ -1,6 +1,5 @@
 package stringcalculator;
 
-import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
@@ -10,36 +9,40 @@ import static org.junit.Assert.*;
 
 public class StringCalculatorTest {
    
-    private StringCalculator calculator = new StringCalculator();
+    private final StringCalculator calculator = new StringCalculator();
     
     @org.junit.Test
-    public void testEmptyString() {
+    public void testEmptyString() throws Exception {
         assertEquals(calculator.add(""), 0);
     }
     
     @org.junit.Test
-    public void testSingleValue() {
+    public void testSingleValue() throws Exception {
         assertEquals(calculator.add("1"), 1);
     }
     
     @org.junit.Test
-    public void testTwoValues() {
+    public void testTwoValues() throws Exception {
         assertEquals(calculator.add("1,2"), 3);
     }
     
     @org.junit.Test
-    public void testUnknownAmountOfValues() {
+    public void testUnknownAmountOfValues() throws Exception {
         assertEquals(calculator.add("1,2,3,4,5"), 15);
     }
     
     @org.junit.Test
-    public void testNewLineDelimitedValues() {
+    public void testNewLineDelimitedValues() throws Exception {
         assertEquals(calculator.add("1,2\n3"), 6);
     }
     
     @org.junit.Test
-    public void testCustomDelimitedValues() {
+    public void testCustomDelimitedValues() throws Exception {
         assertEquals(calculator.add("//;\n1;2;3"), 6);
     }
     
+    @org.junit.Test(expected = Exception.class)
+    public void testNegativeValues() throws Exception{
+        calculator.add("-3");
+    }
 }

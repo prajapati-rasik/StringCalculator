@@ -10,7 +10,7 @@ public class StringCalculator {
     
     private final String delimiters = ",|\n";
     
-    public int add(String numberString){
+    public int add(String numberString) throws Exception{
         String[] numbers = splitString(numberString);
         if(numberString.isEmpty()){
             return 0;
@@ -30,12 +30,22 @@ public class StringCalculator {
         return numberString.split(delimiters);
     }
     
-    private int getsum(String[] numbers){
+    private int getsum(String[] numbers) throws Exception{
+        checkForNegatives(numbers);
         int sum = 0;
         for(String number : numbers){
             sum += convertStringToInt(number);
         }
         return sum;
+    }
+    
+    private void checkForNegatives(String[] numbers) throws Exception {
+        for(String number : numbers){
+            int value = convertStringToInt(number);
+            if(value < 0){
+                throw new Exception("Negative not allowed : " + value);
+            }
+        }
     }
     
     private int convertStringToInt(String number){
