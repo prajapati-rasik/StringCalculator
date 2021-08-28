@@ -43,6 +43,21 @@ public class StringCalculatorTest {
     
     @org.junit.Test(expected = Exception.class)
     public void testNegativeValues() throws Exception{
-        calculator.add("-3");
+        try{
+            calculator.add("-3");
+        }catch(Exception e){
+            assertEquals(e.getMessage(),"Negatives not allowed : -3");
+            throw e;
+        }
+    }
+    
+    @org.junit.Test(expected = Exception.class)
+    public void testMultipleNegativeValues() throws Exception{
+        try{
+            calculator.add("-3,-4,6,-7");
+        }catch(Exception e){
+            assertEquals(e.getMessage(),"Negatives not allowed : -3 -4 -7");
+            throw e;
+        }
     }
 }

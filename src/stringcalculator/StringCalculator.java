@@ -40,11 +40,15 @@ public class StringCalculator {
     }
     
     private void checkForNegatives(String[] numbers) throws Exception {
+        String message = "";
         for(String number : numbers){
             int value = convertStringToInt(number);
             if(value < 0){
-                throw new Exception("Negative not allowed : " + value);
+                message += (" "+value);
             }
+        }
+        if(!message.isEmpty()){
+            throw new Exception("Negatives not allowed :" + message);
         }
     }
     
