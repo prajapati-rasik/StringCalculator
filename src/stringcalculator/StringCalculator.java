@@ -6,8 +6,10 @@ package stringcalculator;
  */
 public class StringCalculator {
     
+    private final String delimiters = ",|\n";
+    
     public int add(String numberString){
-        String[] numbers = numberString.split(",");
+        String[] numbers = numberString.split(delimiters);
         if(numberString.isEmpty()){
             return 0;
         }else if(numberString.length() == 1){
