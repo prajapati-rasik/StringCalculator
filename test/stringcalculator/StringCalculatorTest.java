@@ -21,4 +21,9 @@ public class StringCalculatorTest {
     public void testSingleValue() {
         assertEquals(calculator.add("1"), 1);
     }
+    
+    @org.junit.Test
+    public void testTwoValues() {
+        assertEquals(calculator.add("1,2"), 3);
+    }
 }
