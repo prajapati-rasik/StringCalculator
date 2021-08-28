@@ -37,4 +37,9 @@ public class StringCalculatorTest {
         assertEquals(calculator.add("1,2\n3"), 6);
     }
     
+    @org.junit.Test
+    public void testCustomDelimitedValues() {
+        assertEquals(calculator.add("//;\n1;2;3"), 6);
+    }
+    
 }
