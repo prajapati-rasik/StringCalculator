@@ -16,4 +16,9 @@ public class StringCalculatorTest {
     public void testEmptyString() {
         assertEquals(calculator.add(""), 0);
     }
+    
+    @org.junit.Test
+    public void testSingleValue() {
+        assertEquals(calculator.add("1"), 1);
+    }
 }
