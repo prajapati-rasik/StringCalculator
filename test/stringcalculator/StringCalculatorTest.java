@@ -28,6 +28,11 @@ public class StringCalculatorTest {
     }
     
     @org.junit.Test
+    public void testForNumberGreaterThanThousand() throws Exception {
+        assertEquals(calculator.add("1,1001,2"), 3);
+    }
+    
+    @org.junit.Test
     public void testMultipleCalledCount() throws Exception {
         calculator.add("");
         calculator.add("");

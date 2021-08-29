@@ -40,7 +40,8 @@ public class StringCalculator {
         checkForNegatives(numbers);
         int sum = 0;
         for(String number : numbers){
-            sum += convertStringToInt(number);
+            if(convertStringToInt(number) <= 1000)
+                sum += convertStringToInt(number);
         }
         return sum;
     }
