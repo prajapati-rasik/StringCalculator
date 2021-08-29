@@ -12,7 +12,7 @@ public class StringCalculator {
     private int callCount = 0;
     
     public int add(String numberString) throws Exception{
-        callCount = 1;
+        callCount += 1;
         String[] numbers = splitString(numberString);
         if(numberString.isEmpty()){
             return 0;
