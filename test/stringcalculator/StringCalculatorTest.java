@@ -33,6 +33,11 @@ public class StringCalculatorTest {
     }
     
     @org.junit.Test
+    public void testForAnyLengthDelimiter() throws Exception {
+        assertEquals(calculator.add("//[***]\n1***2***3"), 6);
+    }
+    
+    @org.junit.Test
     public void testMultipleCalledCount() throws Exception {
         calculator.add("");
         calculator.add("");

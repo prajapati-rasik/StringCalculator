@@ -29,8 +29,24 @@ public class StringCalculator {
     
     private String[] splitString(String numberString){
         if(numberString.startsWith("//")){
-            String delimiter = numberString.substring(2, 3);
-            String number = numberString.substring(4);
+            int startIndex = 2; //start index of delimiter
+            int endIndex = 3; //end index of delimiter
+            if(numberString.charAt(2) == '['){
+                startIndex = 3;
+                for(int i = 3;i < numberString.length();i++){
+                    if(numberString.charAt(i) == ']'){
+                        endIndex = i;
+                        break;
+                    }
+                }
+            }
+            String delimiter = numberString.substring(startIndex, endIndex);
+            //for excluding '\n'
+            if(endIndex != 3) endIndex += 1;
+            String number = numberString.substring(endIndex + 1);
+            //for escaping meta characterd
+            number = number.replaceAll("\\"+delimiter.substring(0,1), "ff");
+            delimiter = delimiter.replaceAll("\\"+delimiter.substring(0,1), "ff");
             return number.split(delimiter);
         }
         return numberString.split(delimiters);
