@@ -9,8 +9,10 @@ import java.util.regex.Pattern;
 public class StringCalculator {
     
     private final String delimiters = ",|\n";
+    private int callCount = 0;
     
     public int add(String numberString) throws Exception{
+        callCount = 1;
         String[] numbers = splitString(numberString);
         if(numberString.isEmpty()){
             return 0;
@@ -22,7 +24,7 @@ public class StringCalculator {
     }
     
     public int getCalledCount(){
-        return 0;
+        return callCount;
     }
     
     private String[] splitString(String numberString){

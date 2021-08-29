@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 
 public class StringCalculatorTest {
    
-    private final StringCalculator calculator = new StringCalculator();
+    private StringCalculator calculator = new StringCalculator();
     
     @org.junit.Test
     public void testZeroCalledCount() {
@@ -19,6 +19,12 @@ public class StringCalculatorTest {
     @org.junit.Test
     public void testEmptyString() throws Exception {
         assertEquals(calculator.add(""), 0);
+    }
+    
+    @org.junit.Test
+    public void testSingleCalledCount() throws Exception {
+        calculator.add("");
+        assertEquals(calculator.getCalledCount(), 1);
     }
     
     @org.junit.Test
