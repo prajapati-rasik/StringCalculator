@@ -1,5 +1,6 @@
 package stringcalculator;
 
+import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 /**
@@ -29,24 +30,36 @@ public class StringCalculator {
     
     private String[] splitString(String numberString){
         if(numberString.startsWith("//")){
-            int startIndex = 2; //start index of delimiter
             int endIndex = 3; //end index of delimiter
+            ArrayList<String> delimiterList = new ArrayList<String>(); //list of delimiters
             if(numberString.charAt(2) == '['){
-                startIndex = 3;
+                int startdelimiter = 3;
                 for(int i = 3;i < numberString.length();i++){
-                    if(numberString.charAt(i) == ']'){
+                    if(numberString.charAt(i) == '\n'){
                         endIndex = i;
                         break;
                     }
+                    if(numberString.charAt(i) == ']'){
+                        String delimiterPattern = numberString.substring(startdelimiter, i);
+                        startdelimiter = i+2;
+                        delimiterList.add(delimiterPattern);
+                    }
+                }
+            }else{
+                delimiterList.add(numberString.substring(2, 3));
+            }
+            String number = numberString.substring(endIndex + 1);
+            String delimiter = "";
+            for(String listItem : delimiterList){
+                //for escaping meta characterd
+                number = number.replaceAll("\\"+listItem.substring(0,1), "ff");
+                listItem = listItem.replaceAll("\\"+listItem.substring(0,1), "ff");
+                if(delimiter.isEmpty()) delimiter += listItem;
+                else {
+                    delimiter += "|";
+                    delimiter += listItem;
                 }
             }
-            String delimiter = numberString.substring(startIndex, endIndex);
-            //for excluding '\n'
-            if(endIndex != 3) endIndex += 1;
-            String number = numberString.substring(endIndex + 1);
-            //for escaping meta characterd
-            number = number.replaceAll("\\"+delimiter.substring(0,1), "ff");
-            delimiter = delimiter.replaceAll("\\"+delimiter.substring(0,1), "ff");
             return number.split(delimiter);
         }
         return numberString.split(delimiters);

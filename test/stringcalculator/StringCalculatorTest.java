@@ -89,4 +89,14 @@ public class StringCalculatorTest {
             throw e;
         }
     }
+    
+    @org.junit.Test
+    public void testMultipleDelimiters() throws Exception{
+        assertEquals(calculator.add("//[*][%]\n1*2%3"), 6);
+    }
+    
+    @org.junit.Test
+    public void testAnyLengthMultipleDelimiters() throws Exception{
+        assertEquals(calculator.add("//[**][%%]\n1**2%%3"), 6);
+    }
 }
