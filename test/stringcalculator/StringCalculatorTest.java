@@ -12,6 +12,11 @@ public class StringCalculatorTest {
     private final StringCalculator calculator = new StringCalculator();
     
     @org.junit.Test
+    public void testZeroCalledCount() {
+        assertEquals(calculator.getCalledCount(), 0);
+    }
+    
+    @org.junit.Test
     public void testEmptyString() throws Exception {
         assertEquals(calculator.add(""), 0);
     }

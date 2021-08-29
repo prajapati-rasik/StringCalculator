@@ -21,6 +21,10 @@ public class StringCalculator {
         }
     }
     
+    public int getCalledCount(){
+        return 0;
+    }
+    
     private String[] splitString(String numberString){
         if(numberString.startsWith("//")){
             String delimiter = numberString.substring(2, 3);
